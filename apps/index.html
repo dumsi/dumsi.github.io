@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dumsi Inc.</title>
+    <link rel="shortcut icon" type="image/png" href="../fav2.png"/>
+    <meta name="google-site-verification" content="6EeBsilRGU6BIjGfMeNAxlW359XGe8MCv5rxvIyq0Xo" />
+</head>
+<body>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -8,24 +16,26 @@
     });
 
     FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      // the user is logged in and has authenticated your
-      // app, and response.authResponse supplies
-      // the user's ID, a valid access token, a signed
-      // request, and the time the access token
-      // and signed request each expire
-      alert('You are in!');
-      var uid = response.authResponse.userID;
-      var accessToken = response.authResponse.accessToken;
-    } else if (response.status === 'not_authorized') {
-      // the user is logged in to Facebook,
-      // but has not authenticated your app
-      alert('Youre Not Authorized!');
-    } else {
-      // the user isn't logged in to Facebook.
-      window.top.location = "https://facebook.com";
-    }
-   });
+      if (response.status === 'connected') {
+        // the user is logged in and has authenticated your
+        // app, and response.authResponse supplies
+        // the user's ID, a valid access token, a signed
+        // request, and the time the access token
+        // and signed request each expire
+        alert('You are in!');
+        var uid = response.authResponse.userID;
+        var accessToken = response.authResponse.accessToken;
+      } else if (response.status === 'not_authorized') {
+        // the user is logged in to Facebook,
+        // but has not authenticated your app
+        FB.login(function(response) {
+          // handle the response
+        }, {scope: 'email,user_likes'});
+      } else {
+        // the user isn't logged in to Facebook.
+        window.top.location = "https://facebook.com";
+      }
+     });
 
   };
 
@@ -39,3 +49,6 @@
 </script>
 <h1>Welcome to our App!</h1>
 <p>This is our new facebook application.</p>
+
+
+</body>
