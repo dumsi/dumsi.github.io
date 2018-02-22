@@ -1,2 +1,41 @@
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '332659190561999',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.12'
+    });
+
+    FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token
+      // and signed request each expire
+      alert('You are in!');
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+    } else if (response.status === 'not_authorized') {
+      // the user is logged in to Facebook,
+      // but has not authenticated your app
+      alert('Youre Not Authorized!');
+    } else {
+      // the user isn't logged in to Facebook.
+      window.top.location = "https://facebook.com";
+    }
+   });
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <h1>Welcome to our App!</h1>
 <p>This is our new facebook application.</p>
